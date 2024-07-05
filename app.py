@@ -96,4 +96,4 @@ def download_all():
     return send_file(zip_buffer, as_attachment=True, download_name=zip_filename)
 
 if __name__ == '__main__':
-    app.run(host='192.168.1.2', port=5000, debug=True)
+    app.run(host='192.168.1.2', port=8000, debug=True)
