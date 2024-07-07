@@ -21,6 +21,7 @@ def index():
         <title>Cure51 Server</title>
         <h1>Cure51 Files</h1>
         <h2>Upload File</h2>
+        <p>WARNING: Only IT employees should upload shell scripts!</p>
         <form method=post enctype=multipart/form-data action="/upload">
           <input type=file name=file>
           <input type=submit value=Upload>
