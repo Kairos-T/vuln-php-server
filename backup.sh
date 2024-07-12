@@ -1,6 +1,6 @@
 #!/bin/bash
 
-SOURCE_DIR="/home/cure51/server/uploads/"
+SOURCE_DIR="/var/www/html/uploads/"
 DEST_DIR="/var/backups/uploads_backup/"
 
 sudo cp -r $SOURCE_DIR* $DEST_DIR
