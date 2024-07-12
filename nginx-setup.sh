@@ -1,8 +1,8 @@
 #!/bin/bash
 
 DOMAIN="server.cure51.com"
-FLASK_IP="192.168.1.2"
-FLASK_PORT="8000"
+SERVER_IP="192.168.1.2"
+SERVER_PORT="8080"
 
 sudo apt update
 sudo apt install -y nginx
@@ -14,7 +14,7 @@ server {
     server_name $DOMAIN;
 
     location / {
-        proxy_pass http://$FLASK_IP:$FLASK_PORT;
+        proxy_pass http://$SERVER_IP:$SERVER_PORT;
         proxy_set_header Host \$host;
         proxy_set_header X-Real-IP \$remote_addr;
         proxy_set_header X-Forwarded-For \$proxy_add_x_forwarded_for;
