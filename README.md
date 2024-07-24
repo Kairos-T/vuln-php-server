@@ -12,7 +12,7 @@ The PHP web server runs on Apache, with Nginx as a reverse proxy to forward requ
 
 - **Operating System**: Ubuntu 24.04 LTS
 - **Web Server**: Apache 2.4.58
-- **Reverse PRoxy**: Nginx 1.24.0
+- **Reverse Proxy**: Nginx 1.24.0
 
 ## Exploits
 
